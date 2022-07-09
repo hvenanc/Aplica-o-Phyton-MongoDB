@@ -12,7 +12,7 @@ def get_database():
     client = MongoClient(CONNECTION_STRING)
 
     # Cria o banco de dados
-    return client['Loja']
+    return client['Onibus']
 
     # Isso é adicionado para que muitos arquivos possam reutilizar a função get_database()
 
@@ -22,28 +22,29 @@ if __name__ == "__main__":
 
     # Criando uma coleção
 
-    collection_name = dbname["Itens"]
+    collection_name = dbname["Linhas"]
 
     # Inserindo Itens
 
-    item_1 = {
-        "id": "IT1",
-        "ean": "7892840211240",
-        "prooduto": "SALGADINHO DORITOS QUEIJO NACHO 56G",
-        "medida": "un",
-        "preco": 8.59,
-        "estoque": 48
+    linha_1 = {
+        "CÓDIGO": 104,
+        "LINHA": "Circular (IMIP)",
+        "TARIFA": 4.10,
+        "FROTA": 6,
+        "INTEGRAÇÃO": True,
+        "AR-CONDICIONADO": True
     }
 
-    item_2 = {
-        "id": "IT2",
-        "ean": "7896045504541",
-        "prooduto": "CERVEJA AMSTEL 600ML",
-        "medida": "un",
-        "preco": 8.89,
-        "estoque": 60
+    linha_2 = {
+        "CÓDIGO": 202,
+        "LINHA": "T.I. Barro/T.I. Macaxeira (Várzea)",
+        "TARIFA": 4.10,
+        "FROTA": 10,
+        "INTEGRAÇÃO": True,
+        "AR-CONDICIONADO": False
     }
 
+    
     # Insere vários valores de uma só vez
     # O método insert_one() insere apenas um documento
-    collection_name.insert_many([item_1, item_2])
+    collection_name.insert_many([linha_1, linha_2])
