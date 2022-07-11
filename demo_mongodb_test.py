@@ -20,11 +20,11 @@ def get_database():
 if __name__ == "__main__":
     dbname = get_database()
 
-    # Criando uma coleção
+    #Criando uma coleção
 
     collection_name = dbname["Linhas"]
 
-    # Inserindo Itens
+    #Inserindo Itens
 
     linha_1 = {
         "CÓDIGO": 104,
@@ -47,4 +47,30 @@ if __name__ == "__main__":
     
     # Insere vários valores de uma só vez
     # O método insert_one() insere apenas um documento
-    collection_name.insert_many([linha_1, linha_2])
+   # collection_name.insert_many([linha_1, linha_2])
+ 
+    print(dbname.list_collection_names())
+
+    #Checando a existência de uma coleção @Henrique
+
+    colecao = (input("Busque uma coleção:"))
+    collist = dbname.list_collection_names()
+    if colecao in collist:
+        print("Coleção encontrada!");
+    else: print("Coleção não encontrada!")
+
+    #imprimindo uma coleção @Henrique
+
+    #x = linha_1
+
+    #print(x)
+
+    #Buscando uma linha de ônibus pelo seu código @Henrique
+
+    minha_linha = int(input("Insira sua linha:"))
+    myquery = {"CÓDIGO":minha_linha}
+
+    mydoc = collection_name.find(myquery)
+
+    for y in mydoc:
+     print(y)
