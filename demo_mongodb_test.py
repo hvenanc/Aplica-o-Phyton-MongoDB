@@ -24,40 +24,43 @@ if __name__ == "__main__":
 
     collection_name = dbname["Linhas"]
 
+    print("Digite os dados da sua linha:")
+    print("\n")
+    codigo=int(input("CÓDIGO: "))
+    nome=(input("NOME: "))
+    tarifa=float(input("TARIFA: "))
+    frota=int(input("FROTA: "))
+    integração=(input("INTEGRAÇÃO:"))
+    arCondicionado=(input("AR-CONDICIONADO: "))
+    print("\n")
+    print("LINHA CADASTRADA COM SUCESSO!")
+
     #Inserindo Itens
 
-    linha_1 = {
-        "CÓDIGO": 104,
-        "LINHA": "Circular (IMIP)",
-        "TARIFA": 4.10,
-        "FROTA": 6,
-        "INTEGRAÇÃO": True,
-        "AR-CONDICIONADO": True
-    }
-
-    linha_2 = {
-        "CÓDIGO": 202,
-        "LINHA": "T.I. Barro/T.I. Macaxeira (Várzea)",
-        "TARIFA": 4.10,
-        "FROTA": 10,
-        "INTEGRAÇÃO": True,
-        "AR-CONDICIONADO": False
+    linha = {
+        "CÓDIGO": codigo,
+        "LINHA": nome,
+        "TARIFA": tarifa,
+        "FROTA": frota,
+        "INTEGRAÇÃO": integração,
+        "AR-CONDICIONADO": arCondicionado
     }
 
     
     # Insere vários valores de uma só vez
     # O método insert_one() insere apenas um documento
-   # collection_name.insert_many([linha_1, linha_2])
+    collection_name.insert_one(linha)
+    #collection_name.insert_many([nlinha,nlinha])
  
     print(dbname.list_collection_names())
 
     #Checando a existência de uma coleção @Henrique
 
-    colecao = (input("Busque uma coleção:"))
-    collist = dbname.list_collection_names()
-    if colecao in collist:
-        print("Coleção encontrada!");
-    else: print("Coleção não encontrada!")
+    # colecao = (input("Busque uma coleção:"))
+    # collist = dbname.list_collection_names()
+    # if colecao in collist:
+    #     print("Coleção encontrada!");
+    # else: print("Coleção não encontrada!")
 
     #imprimindo uma coleção @Henrique
 
@@ -67,6 +70,7 @@ if __name__ == "__main__":
 
     #Buscando uma linha de ônibus pelo seu código @Henrique
 
+    print("ENCONTRE UMA LINHA DE ÔNIBUS, INSERINDO SEU CÓDIGO")
     minha_linha = int(input("Insira sua linha:"))
     myquery = {"CÓDIGO":minha_linha}
 
