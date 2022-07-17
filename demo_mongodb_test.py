@@ -22,6 +22,8 @@ if __name__ == "__main__":
 
     #Criando uma coleção
 
+    #def cadastrarLinha():
+
     collection_name = dbname["Linhas"]
 
     print("Digite os dados da sua linha:")
@@ -46,35 +48,46 @@ if __name__ == "__main__":
         "AR-CONDICIONADO": arCondicionado
     }
 
-    
-    # Insere vários valores de uma só vez
-    # O método insert_one() insere apenas um documento
     collection_name.insert_one(linha)
-    #collection_name.insert_many([nlinha,nlinha])
- 
-    print(dbname.list_collection_names())
-
-    #Checando a existência de uma coleção @Henrique
-
-    # colecao = (input("Busque uma coleção:"))
-    # collist = dbname.list_collection_names()
-    # if colecao in collist:
-    #     print("Coleção encontrada!");
-    # else: print("Coleção não encontrada!")
-
-    #imprimindo uma coleção @Henrique
-
-    #x = linha_1
-
-    #print(x)
-
+    # O método insert_one() insere apenas um documento
+    
     #Buscando uma linha de ônibus pelo seu código @Henrique
 
-    print("ENCONTRE UMA LINHA DE ÔNIBUS, INSERINDO SEU CÓDIGO")
-    minha_linha = int(input("Insira sua linha:"))
+    #def buscarLinha():
+
+    print("ENCONTRE UMA LINHA DE ÔNIBUS, INSERINDO SEU CÓDIGO\n")
+    minha_linha = int(input("INSIRA O CÓDIGO DA LINHA:\n"))
     myquery = {"CÓDIGO":minha_linha}
 
     mydoc = collection_name.find(myquery)
 
     for y in mydoc:
-     print(y)
+     print(y,"\n")
+     
+
+    #Excluindo linha do Banco @Henrique
+
+    print("EXCLUA UMA LINHA DE ÔNIBUS, INSERINDO SEU CÓDIGO")
+    minha_linha = int(input("INSIRA O CÓDIGO DA LINHA QUE DESEJA EXCLUIR:"))
+    myquery = {"CÓDIGO":minha_linha}
+    collection_name.delete_one(myquery)
+    print("LINHA EXCLUIDA COM SUCESSO!")
+    print("LINHA EXCLUIDA: ",minha_linha)
+
+    #Menu (Testando um menu, usando o básico de funções) @Henrique
+    # print("\n")
+    # print("---------------MENU-----------------")
+    # menudeopções = ["Cadastrar nova Linha", "Consultar Linhas",
+    #                 "Excluir Linha",]
+    # for numero, opção in enumerate(menudeopções):
+    #     print(numero+1, "-", opção)
+    # print("------------------------------------")
+
+    # opção=int(input("Digite sua escolha: \n"))
+    # if opção==1:
+    #     cadastrarLinha()
+    # elif opção==2:
+    #     buscarLinha()
+    # elif opção==3:
+    #     excluirLinha()
+
